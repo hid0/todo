@@ -154,19 +154,23 @@ function findTodoIndex(todoId) {
 
 function saveData() {
   if (isStorageExist) {
-    const parsed = JSON.stringify(todos)
-    localStorage.setItem('STORAGE_KEY', parsed)
-    document.dispatchEvent(new Event(RENDER_EVENT))
+    const parsed = JSON.stringify(todos);
+    localStorage.setItem("STORAGE_KEY", parsed);
+    document.dispatchEvent(new Event(RENDER_EVENT));
   }
 }
 
-const SAVED_EVENT = 'saved-todo';
-const STORAGE_KEY = 'TODO_APPS';
+const SAVED_EVENT = "saved-todo";
+const STORAGE_KEY = "TODO_APPS";
 
 function isStorageExist() {
-  if (typeof (Storage) === undefined) {
-    alert('browser kao not support:)')
-    return false
+  if (typeof Storage === undefined) {
+    alert("browser kao not support:)");
+    return false;
   }
-  return true
+  return true;
 }
+
+document.addEventListener(SAVED_EVENT, function () {
+  console.log(localStorage.getItem(STORAGE_KEY));
+});
